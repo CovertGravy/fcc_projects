@@ -34,15 +34,24 @@ function checkCashRegister(price, cash, cid) {
     let total = 0;
     let change = [];
     for (let j = changescope.length - 1; j >= 0; j--) {
-      for (let i = 0; i < changescope[j].count; i++) {
-        if (total + changescope[j].value <= change_value) {
-          total += changescope[j].value;
-        } else {
-          break;
+      if (total < change_value) {
+        for (let i = 0; i < changescope[j].count; i++) {
+          if (total + changescope[j].value <= change_value) {
+            total += changescope[j].value;
+          } else {
+            change.push([changescope[j].currency, changescope[j].value * i]);
+            break;
+          }
         }
+      } else {
+        break;
       }
     }
+    return total, change;
   }
+
+  console.log(createChange());
+
   // Here is your change, ma'am.
   // return change;
 }

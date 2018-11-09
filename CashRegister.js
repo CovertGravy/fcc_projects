@@ -33,21 +33,27 @@ function checkCashRegister(price, cash, cid) {
   function createChange() {
     let total = 0;
     let change = [];
+    let count = 0;
     for (let j = changescope.length - 1; j >= 0; j--) {
       if (total < change_value) {
-        for (let i = 0; i < changescope[j].count; i++) {
+        for (let i = 1; i <= changescope[j].count; i++) {
           if (total + changescope[j].value <= change_value) {
             total += changescope[j].value;
+            change[count] = [changescope[j].currency, changescope[j].value * i];
           } else {
-            change.push([changescope[j].currency, changescope[j].value * i]);
             break;
           }
         }
+        count++;
       } else {
         break;
       }
     }
-    return total, change;
+    let status =
+      parseFloat(total.toFixed(2)) == change_value
+        ? 'OPEN'
+        : 'INSUFFICIENT FUNDS';
+    return { total, change, status };
   }
 
   console.log(createChange());
@@ -71,7 +77,7 @@ checkCashRegister(19.5, 20, [
   ['PENNY', 1.01],
   ['NICKEL', 2.05],
   ['DIME', 3.1],
-  ['QUARTER', 4.25],
+  ['QUARTER', 0.25],
   ['ONE', 90],
   ['FIVE', 55],
   ['TEN', 20],

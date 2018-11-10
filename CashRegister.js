@@ -36,7 +36,7 @@ function checkCashRegister(price, cash, cid) {
     let count = 0;
     for (let j = changescope.length - 1; j >= 0; j--) {
       if (total < change_value) {
-        for (let i = 1; i <= changescope[j].count; i++) {
+        for (let i = changescope[j].count; i > 0; i--) {
           if (total + changescope[j].value <= change_value) {
             total += changescope[j].value;
             change[count] = [changescope[j].currency, changescope[j].value * i];
@@ -56,7 +56,7 @@ function checkCashRegister(price, cash, cid) {
     return { total, change, status };
   }
 
-  console.log(createChange());
+  console.log(createChange(), changescope);
 
   // Here is your change, ma'am.
   // return change;
@@ -74,13 +74,7 @@ function checkCashRegister(price, cash, cid) {
 // ["ONE HUNDRED", 100]]
 
 checkCashRegister(19.5, 20, [
-  ['PENNY', 1.01],
-  ['NICKEL', 2.05],
-  ['DIME', 3.1],
-  ['QUARTER', 0.25],
-  ['ONE', 90],
-  ['FIVE', 55],
-  ['TEN', 20],
-  ['TWENTY', 60],
-  ['ONE HUNDRED', 100]
+  ['NICKEL', 0.05],
+  ['DIME', 0.2],
+  ['QUARTER', 0.25]
 ]);

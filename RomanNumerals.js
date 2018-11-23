@@ -27,9 +27,16 @@ function convertToRoman(num) {
       break;
     }
   }
+
+  if (num > 1000) {
+    big_factor = 1000;
+  }
   console.log(big_factor);
 
-  let index = decimal.indexOf(big_factor) - 1;
+  let index =
+    big_factor == 1000
+      ? decimal.indexOf(big_factor)
+      : decimal.indexOf(big_factor) - 1;
   let value = 0;
   let pre_value = 0;
   let pre_roman = '';
@@ -54,7 +61,8 @@ function convertToRoman(num) {
         let find = pre_roman + roman_passed;
         let regex = new RegExp(find, 'g');
         let replace = roman[decimal.indexOf(value_passed + pre_value)];
-        result.replace(regex, replace);
+        console.log(regex.test(result));
+        result = result.replace(regex, replace);
       }
       pre_value = value_passed;
       pre_roman = roman_passed;
@@ -69,4 +77,4 @@ function convertToRoman(num) {
   return result;
 }
 
-console.log(convertToRoman(19));
+console.log(convertToRoman(1004));

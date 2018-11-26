@@ -1,5 +1,9 @@
 function convertToRoman(num) {
+<<<<<<< HEAD
   const roman = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 'CM', 'M'];
+=======
+  const roman = ['I','IV','V','IX','X','XL','L','XC','C','CD','D','CM','M'];
+>>>>>>> 6fba65a739034e5e904247a4f16a64330ab048ba
   const decimal = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
   let result = '';
   let big_factor = 0;

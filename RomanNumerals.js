@@ -1,19 +1,5 @@
 function convertToRoman(num) {
-  const roman = [
-    'I',
-    'IV',
-    'V',
-    'IX',
-    'X',
-    'XL',
-    'L',
-    'XC',
-    'C',
-    'CD',
-    'D',
-    'CM',
-    'M'
-  ];
+  const roman = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 'CM', 'M'];
   const decimal = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
   let result = '';
   let big_factor = 0;
@@ -33,10 +19,7 @@ function convertToRoman(num) {
   }
   console.log(big_factor);
 
-  let index =
-    big_factor == 1000
-      ? decimal.indexOf(big_factor)
-      : decimal.indexOf(big_factor) - 1;
+  let index = big_factor == 1000 ? decimal.indexOf(big_factor) : decimal.indexOf(big_factor) - 1;
   let value = 0;
   let pre_value = 0;
   let pre_roman = '';
@@ -77,4 +60,23 @@ function convertToRoman(num) {
   return result;
 }
 
-console.log(convertToRoman(1004));
+console.log(convertToRoman(299));
+
+function convertRoman(num) {
+  const roman = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 'CM', 'M'];
+  const decimal = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+  const Roman = roman.reverse();
+  const Decimal = decimal.reverse();
+  let result = '';
+
+  for (let i = 0; i < Decimal.length; i++) {
+    while (num >= Decimal[i]) {
+      result += Roman[i];
+      num -= Decimal[i];
+    }
+  }
+
+  return result;
+}
+
+console.log(convertRoman(299));
